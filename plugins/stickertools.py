@@ -118,7 +118,7 @@ async def uconverter(event):
         cmd = ["lottie_convert.py", b, "something.webp"]
         file = "something.webp"
     else:
-        return await xx.edit("**Please select from gif/img/sticker**")
+        return await xx.edit("**mohon pilih gif/img/sticker**")
     process = await asyncio.create_subprocess_exec(
         *cmd,
         stdout=asyncio.subprocess.PIPE,
@@ -261,7 +261,7 @@ async def hehe(args):
         if not emoji:
             emoji = "🏵"
         if len(splat) == 3:
-            pack = splat[2]  # User sent ultroid_both
+            pack = splat[2]  # sakura
             emoji = splat[1]
         elif len(splat) == 2:
             if splat[1].isnumeric():
@@ -403,9 +403,9 @@ async def hehe(args):
                 await conv.get_response()
                 await ultroid_bot.send_read_acknowledge(conv.chat_id)
         await xx.edit(
-            f"**⩥ BERHASIL DICURI ⩤**\
-            \n**⪀ EMOJI » {emoji}\
-            \n**⪀ LIHAT PACK** [DISINI](t.me/addstickers/{packname})",
+            f"**✨ BERHASIL DICURI ✨**\
+            \n**⪀ EMOJI** » {emoji}\
+            \n**⪀ LIHAT PACK** ▹ [DISINI](t.me/addstickers/{packname}) ◃",
             parse_mode="md",
         )
         try:
