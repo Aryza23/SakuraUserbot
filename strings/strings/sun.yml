@@ -1,0 +1,196 @@
+name: Sundanese
+natively: Sunda
+
+authors:
+  - levina
+
+# commons
+com_1: "`ngolahna...`"
+com_2: "`milarian...`"
+# help
+help_1: "`{}` sanés plugin anu leres!"
+help_2: "bot henteu ngaréspon paménta inline.\nhadé pikeun ngalakukeun `{}restart`"
+help_3: "`mimitina aktipkeun modeu inline bot anjeun ti` @Botfather."
+help_4: "🌸 hei anjeun, \nanjeun ngaktipkeun modeu bot. \npangguna mode bot teu tiasa kéngingkeun bantosan langsung... \nlangkung saé nyalin sareng nempelkeun ieu di handap dina obrolan teras pencét pop up \n\n `@{} sakura`"
+
+# autopic
+autopic_1: "hei, pasihan abdi kecap..."
+autopic_2: "Teu aya hasil anu kapendak `{}`"
+autopic_3: "meunang koléksi `{}` aya hubunganana sareng pamilarian anjeun !\nngamimitian autopic !!"
+
+# inline
+inline_1: "✨ [sᴀᴋᴜʀᴀ sᴜᴘᴘᴏʀᴛ](t.me/levinachannel) ✨\n\n
+**⨂ ᴍᴇɴᴜ ᴘɪᴛᴜʟᴜɴɢ ᴘɪᴋᴇᴜɴ {}.\n\n
+📚 ᴊᴜᴍʟᴀʜ ᴘʟᴜɢɪɴs » {}**"
+inline_2: "✨ [sᴀᴋᴜʀᴀ sᴜᴘᴘᴏʀᴛ](t.me/levinachannel) ✨\n\n
+**⨂ ᴍᴇɴᴜ ᴘɪᴛᴜʟᴜɴɢ ᴘɪᴋᴇᴜɴ {}.\n\n
+📘 ᴊᴜᴍʟᴀʜ ᴀᴅᴅᴏɴs » {}**"
+inline_3: "✨ [sᴀᴋᴜʀᴀ sᴜᴘᴘᴏʀᴛ](t.me/levinachannel) ✨\n\n
+**⨂ ᴍᴇɴᴜ ᴘɪᴛᴜʟᴜɴɢ ᴘɪᴋᴇᴜɴ {}.\n\n
+📘 ᴊᴜᴍʟᴀʜ ᴀᴅᴅᴏɴs » {}\n\n
+ᴘᴇʀɢɪ ᴅᴀɴ ᴛᴀᴍʙᴀʜᴋᴀɴ ᴠᴀʀ `ADDONS` ᴅᴇɴɢᴀɴ ᴠᴀʟᴜᴇ ᴛʀᴜᴇ**"
+inline_4: "**🌸 sᴀᴋᴜʀᴀ-ᴜʙᴏᴛ ᴍɪʟɪᴋ {}\n\n⁍⁍⁍⁍⁍🌸 ᴍᴇɴᴜ ᴜᴛᴀᴍᴀ 🌸⁌⁌⁌⁌⁌\n\n➥ 📚ᴘʟᴜɢɪɴs ▹ {}\n➥ 📘ᴀᴅᴅᴏɴs ▹ {}\n➥ 📙ᴄᴏᴍᴍᴀɴᴅs ▹ {}**"
+inline_5: "**🌸 ᴍᴇɴᴜ ᴘᴀʀᴀɴᴛᴏs ᴅɪᴛᴜᴛᴜᴘ 🌸**"
+
+# tagnotif
+tagnot_1: "{} menandai anda dalam {}\n\n```{}```\n\n[📨MESSAGE📨]({})"
+tagnot_2: "{} menandai anda dalam {}\n\n [📨MESSAGE📨]({})"
+
+# whisper
+wspr_1: "@{} pesan rahasia buatmu.\nhapus pesanmu setelah membaca.\natau pesan selanjutnya tidak bisa diterima."
+wspr_2: "pesan dihapus!"
+
+# afk
+afk_1: "`🌸 sudah tidak afk 🌸\n\n
+sejak ~ {}`"
+afk_2: "#AFK\n
+𝙢𝙤𝙙𝙚 𝙖𝙛𝙠 𝙣𝙤𝙣-𝙖𝙠𝙩𝙞𝙛.\n
+AFK untuk {}`"
+afk_3: "`🌸 𝐒𝐄𝐃𝐀𝐍𝐆 𝐀𝐅𝐊 🌸.\n\n
+sejak {} yang lalu.`\n\n
+**karena:** `{}`"
+afk_4: "`🌸 𝐒𝐄𝐃𝐀𝐍𝐆 𝐀𝐅𝐊 🌸.\n\n
+sejak {} yang lalu.`"
+afk_5: "`🌸 𝐒𝐄𝐃𝐀𝐍𝐆 𝐀𝐅𝐊 🌸.`\n\n
+**karena:** `{}`"
+afk_6: "🌸 𝐀𝐅𝐊 𝐃𝐔𝐋𝐔, 𝐁𝐘𝐄."
+afk_7: "🌸 𝐀𝐅𝐊 🌸\n╭╼━━━━━━━━━━━━\n┣ ᴋᴀʀᴇɴᴀ {}\n╰╼━━━━━━━━━━━━"
+afk_8: "🌸 𝐀𝐅𝐊 𝐃𝐔𝐋𝐔 𝐆𝐔𝐘𝐒."
+
+# bot
+alive_1: "**🌸 𝐒𝐀𝐊𝐔𝐑𝐀 𝐔𝐒𝐄𝐑𝐁𝐎𝐓 𝐀𝐋𝐈𝐕𝐄 🌸**\n\n
+**{}**\n\n
+╭═───────╼═⌘═╾───────═\n
+` `▸ **🌸 𝙥𝙚𝙢𝙞𝙡𝙞𝙠**` `- `{}`\n
+` `▸ **🌸 𝙫𝙚𝙧𝙨𝙞𝙤𝙣**` `- `{}`\n
+` `▸ **🌸 𝙥𝙮𝙨𝙖𝙠𝙪𝙧𝙖**` `- `{}`\n
+` `▸ **🌸 𝙪𝙥𝙩𝙞𝙢𝙚**` `- `{}`\n
+` `▸ **🌸 𝙥𝙮𝙩𝙝𝙤𝙣**` `- `{}`\n
+` `▸ **🌸 𝙩𝙚𝙡𝙚𝙩𝙝𝙤𝙣**` `- `{}`\n
+` `▸ **🌸 𝙗𝙧𝙖𝙣𝙘𝙝**` `- `{}`\n
+╰═───────╼═⌘═╾───────═\n
+` `[𝐆𝐑𝐎𝐔𝐏](t.me/VeezSupportGroup)` `|` `[𝐂𝐇𝐀𝐍𝐍𝐄𝐋](t.me/levinachannel)` `|` `[𝐎𝐖𝐍𝐄𝐑](t.me/dlwrml)` `"
+log: "**heroku** sakura logs.\npasted [here]({}) too!"
+ping: "⚡️ __speeds__ : `{}ms`\n🚀 __uptime__ : `{}`"
+usage: "**💰 𝐃𝐘𝐍𝐎 𝐒𝐓𝐀𝐓𝐔𝐒 💰**:\n\n
+ 🌸 **ᴅʏɴᴏ ᴛᴇʀᴘᴀᴋᴀɪ ᴜɴᴛᴜᴋ** **{}**:\n\n
+     💵  `{}`**$**  `{}`**m**
+**|**  [`{}`**%**]\n\n
+ 🌸 **ᴅʏɴᴏ ᴛᴇʀsɪsᴀ**:\n\n
+     💵  `{}`**$**  `{}`**m**
+**|**  [`{}`**%**]\n\n
+**penyimpanan brankas: {}\n\n**
+**⚡terpakai: {}\n⚡kosong: {}\n\n**
+**📊 penggunaan saham 📊\n\n🏦 high: {}\n🏦 down: {}\n\n**
+**CPU: {}%\nRAM: {}%\nDISK: {}%**"
+shutdown: "🌸 sayonara {}.\n`sedang mematikan bot...`"
+
+# broadcast
+bd_1: "`menambahkan ke database...`"
+bd_2: "`mencoba menambahkan semua channel admin ke database...`"
+bd_3: "**Berhasil.**\nChats sudah ada dalam Database: {}\nBaru ditambahkan: {}"
+bd_4: "Channels ditambahkan!"
+bd_5: "`Menambahkan ke database!`"
+bd_6: "`Channel sudah ada dalam database!`"
+
+# carbon
+carbon_1: "memproses..."
+carbon_2: "carbon oleh [{}](tg://user?id={})"
+
+# chats
+chats_1: "`memproses...`"
+chats_2: "`tidak bisa menghapus chat ini.`"
+chats_3: "`aku bukan admin.`"
+chats_4: "#Terhapus\nTerhapus {}"
+chats_5: "Anda [{}]({}) Grup telah dibuat oleh boss!"
+chats_6: "Join @levinachannel"
+
+# converter
+cvt_1: "Balas ke media/Dokumen apapun."
+cvt_2: "Beri Nama dan ekstensi file"
+cvt_3: "`memproses...`"
+cvt_4: "balas ke media."
+
+# core
+core_1: "`Modul ditemukan`"
+core_2: "{}.py gunakan .paste untuk menempel di neko dan raw.."
+core_3: "`Cari lagi..?`"
+core_4: "Modul {} ditemukan"
+core_5: "{}.py gunakan .paste untuk menempel di neko dan raw.."
+core_6: "Modul {}.py tidak ada"
+core_7: "Tidak Ada Modul Seperti Itu"
+core_8: "Ga ada modul yang namanya {}.py"
+core_9: "`Beri tau nama plugin yang ingin Anda unload`"
+core_10: "**Uɴʟᴏᴀᴅᴇᴅ** `{}` **Bᴇʀʜᴀsɪʟ.**"
+core_11: "**Aɴᴅᴀ Tɪᴅᴀᴋ Bɪsᴀ Uɴʟᴏᴀᴅ Oғғɪᴄɪᴀʟ Pʟᴜɢɪɴs**"
+core_12: "**Tɪᴅᴀᴋ Aᴅᴀ Pʟᴜɢɪɴ Yᴀɴɢ Bᴇʀɴᴀᴍᴀ** `{}`"
+core_13: "`Beri tau nama plugin yang ingin Anda uninstall`"
+core_14: "**Uɴɪɴsᴛᴀʟʟᴇᴅ** `{}` **Bᴇʀʜᴀsɪʟ.**"
+core_15: "**Aɴᴅᴀ Tɪᴅᴀᴋ Bɪsᴀ Uɴɪɴsᴛᴀʟʟ Oғғɪᴄɪᴀʟ Pʟᴜɢɪɴs**"
+core_16: "`Beri tau nama plugin yang ingin Anda load`"
+core_17: "**Bᴇʀʜᴀsɪʟ Dɪ Lᴏᴀᴅ** `{}`"
+core_18: "**Tidak dapat diload** `{}` **karena kesalahan berikut.**\n`{}`"
+
+# fedutils
+sf_1: "Memulai Mass-FedBan..."
+sf_2: "`Tidak ada pengguna yang dipilih!`"
+sf_3: "Lu gabisa banned Developer gua!! dasar Noob"
+sf_4: "`Sepertinya Rose tidak merespons atau plugin bermasalah`"
+sf_5: "Anda hanya dapat menggunakan perintah fed satu kali setiap 5 menit"
+sf_6: "Coba lagi dalam 5 menit."
+sf_7: "Tidak dapat mengumpulkan FedAdminList. Sedang Mencoba lagi ({}/3)..."
+sf_8: "Kesalahan"
+sf_9: "Tidak dapat mengumpulkan FedAdminList."
+sf_10: "FBaning dalam {} feds."
+sf_11: "ID Grup FBan yang ditentukan salah."
+sf_12: "{} Pengecualian."
+sf_13: "Kesalahan dalam menghapus file FedAdmin.\n{}"
+sf_14: "SuperFBan Selesai.\nTotal Feds - {}.\nPengecualian - {}.\n Pengaruh {} feds.\n#TB"
+sf_15: "Memulai Mass-UnFedBan..."
+sf_16: "SuperUnFBan Selesai.\nTotal Feds - {}.\nPengecualian - {}.\n Pengaruh {} feds.\n#TB"
+sf_17: "`Beri saya id seseorang, atau balas pesan seseorang untuk memeriksa fedstatnya.`"
+sf_18: "Daftar feds {} telah dibanned.\n\nDikumpulkan menggunakan Sakura Ubot."
+sf_19: "**Kesalahan**\n `Unblock` @MissRose_Bot `dan coba lagi!"
+sf_20: "`mengekstrak informasi...`"
+sf_21: "\n\nFedInfo diekstrak oleh Sakura"
+
+# gdrive
+gdrive_1: "`Anda telah memberi otorisasi dengan Google Drive`"
+gdrive_2: "Pergi [kesini](https://console.developers.google.com/flows/enableapi?apiid=drive) dan dapatkan `GDRIVE_CLIENT_ID` dan `GDRIVE_CLIENT_SECRET` kamu\n\n
+Kirim GDRIVE_CLIENT_ID dan GDRIVE_CLIENT_SECRET kamu seperti ini.\n`GDRIVE_CLIENT_ID GDRIVE_CLIENT_SECRET` dipisahkan dengan spasi."
+gdrive_3: "`Client Id salah anjim`"
+gdrive_4: "`Terjadi kesalahan! Kirim `/auth` lagi.\nJika masih sama, harap hubungi `@levinachannel"
+gdrive_5: "`Berhasil!\nAnda siap untuk menggunakan Google Drive dengan Sakura Userbot.`"
+gdrive_6: "`Pergi ke `{}` dan kirim ``/auth.`"
+gdrive_7: "**File Berhasil Diupload kedalam G-Drive :**\n\n[{}]({})"
+
+# pmpermit
+pmperm_1: "Harap tunggu saya merespons atau Anda akan diblokir dan dilaporkan sebagai spam!!"
+pmperm_2: "Anda telah melakukan spamming pada pesan Boss saya."
+pmperm_3: "Balas pesan seseorang atau coba perintah ini secara pribadi."
+
+# updater
+upd_1: "`memeriksa pembaruan, harap tunggu....`"
+upd_2: "`oops.. updater tidak dapat melanjutkan karena beberapa masalah.`\n\n**LOGTRACE:**\n"
+upd_3: "**UPDATE baru tersedia untuk [[{}]]({}/tree/{}):\n\nPERUBAHAN:**\n\n{}"
+upd_4: "`log perubahan terlalu besar, lihat file untuk melihatnya.`"
+upd_5: "ketik `{}update now` untuk memperbarui userbot."
+upd_6: "{}\n\nketik `{}update now` untuk update bot."
+upd_7: "\n`sakura userbot anda sudah versi`  **paling terbaru**  `dengan`  **[[{}]]({}/tree/{})**\n"
+
+# upload download
+udl_1: "`Balas ke file/media yang ingin anda download...`"
+udl_2: "Download Berhasil..\nTo\n`{}`\nin `{}`"
+udl_3: "`Berikan tempat penyimpanan khusus ke file`"
+
+# words
+wrd_1: "**Kata** - `{}`\n\n**Arti** - \n"
+wrd_2: "**Kata** - `{}`\n\n**Sinonim** - \n"
+wrd_3: "**Kata** - `{}`\n\n**Antonim** - \n"
+
+# ---------------------------------------------------#
+
+# assistant
+ast_1: "pilih api key yang ingin anda setel."
+ast_2: "**remove.bg API**\nmasukkan api key anda dari remove.bg.\n\nGunakan /cancel untuk membatalkan."
+ast_3: "kon'nichiwa {} silahkan telusuri pengaturan berikut ini:"
