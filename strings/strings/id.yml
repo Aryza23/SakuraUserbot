@@ -46,16 +46,16 @@ sejak ~ {}`"
 afk_2: "#AFK\n
 𝙢𝙤𝙙𝙚 𝙖𝙛𝙠 𝙣𝙤𝙣-𝙖𝙠𝙩𝙞𝙛.\n
 AFK untuk {}`"
-afk_3: "🌸 𝐒𝐄𝐃𝐀𝐍𝐆 𝐀𝐅𝐊 🌸.\n
-terakhir dilihat {} yang lalu.`\n\n
+afk_3: "`🌸 𝐒𝐄𝐃𝐀𝐍𝐆 𝐀𝐅𝐊 🌸.\n\n
+sejak {} yang lalu.`\n\n
 **karena:** `{}`"
 afk_4: "`🌸 𝐒𝐄𝐃𝐀𝐍𝐆 𝐀𝐅𝐊 🌸.\n\n
-terakhir dilihat {} yang lalu.`"
+sejak {} yang lalu.`"
 afk_5: "`🌸 𝐒𝐄𝐃𝐀𝐍𝐆 𝐀𝐅𝐊 🌸.`\n\n
 **karena:** `{}`"
-afk_6: "𝒎𝒂𝒖 𝒂𝒇𝒌 𝒅𝒖𝒍𝒖 𝒚𝒂𝒉."
-afk_7: "𝒂𝒌𝒖 𝒍𝒂𝒈𝒊 𝒂𝒇𝒌 𝒏𝒊𝒉, 𝒌𝒂𝒓𝒆𝒏𝒂 {}"
-afk_8: "𝒔𝒆𝒅𝒂𝒏𝒈 𝒂𝒇𝒌 𝒚𝒂 𝒔𝒂𝒚𝒂𝒏𝒈."
+afk_6: "🌸 𝐀𝐅𝐊 𝐃𝐔𝐋𝐔, 𝐁𝐘𝐄."
+afk_7: "🌸 𝐀𝐅𝐊 🌸\n╭╼━━━━━━━━━━━━\n┣ ᴋᴀʀᴇɴᴀ {}\n╰╼━━━━━━━━━━━━"
+afk_8: "🌸 𝐀𝐅𝐊 𝐃𝐔𝐋𝐔 𝐆𝐔𝐘𝐒."
 
 # bot
 alive_1: "**🌸 𝐒𝐀𝐊𝐔𝐑𝐀 𝐔𝐒𝐄𝐑𝐁𝐎𝐓 𝐀𝐋𝐈𝐕𝐄 🌸**\n\n
@@ -73,10 +73,10 @@ alive_1: "**🌸 𝐒𝐀𝐊𝐔𝐑𝐀 𝐔𝐒𝐄𝐑𝐁𝐎𝐓 𝐀𝐋�
 log: "**heroku** sakura logs.\npasted [here]({}) too!"
 ping: "⚡️ __speeds__ : `{}ms`\n🚀 __uptime__ : `{}`"
 usage: "**💰 𝐃𝐘𝐍𝐎 𝐒𝐓𝐀𝐓𝐔𝐒 💰**:\n\n
- 🌸 `𝐝𝐲𝐧𝐨 𝐭𝐞𝐫𝐩𝐚𝐤𝐚𝐢 𝐮𝐧𝐭𝐮𝐤`  **{}**:\n\n
+ 🌸 **ᴅʏɴᴏ ᴛᴇʀᴘᴀᴋᴀɪ ᴜɴᴛᴜᴋ** **{}**:\n\n
      💵  `{}`**$**  `{}`**m**
 **|**  [`{}`**%**]\n\n
- 🌸 `𝐣𝐮𝐦𝐥𝐚𝐡 𝐝𝐲𝐧𝐨 𝐭𝐞𝐫𝐬𝐢𝐬𝐚`:\n\n
+ 🌸 **ᴅʏɴᴏ ᴛᴇʀsɪsᴀ**:\n\n
      💵  `{}`**$**  `{}`**m**
 **|**  [`{}`**%**]\n\n
 **penyimpanan brankas: {}\n\n**
@@ -176,7 +176,7 @@ upd_3: "**UPDATE baru tersedia untuk [[{}]]({}/tree/{}):\n\nPERUBAHAN:**\n\n{}"
 upd_4: "`log perubahan terlalu besar, lihat file untuk melihatnya.`"
 upd_5: "ketik `{}update now` untuk memperbarui userbot."
 upd_6: "{}\n\nketik `{}update now` untuk update bot."
-upd_7: "\n`sakura ubot sudah versi`  **paling terbaru**  `dengan`  **[[{}]]({}/tree/{})**\n"
+upd_7: "\n`sakura userbot anda sudah versi`  **paling terbaru**  `dengan`  **[[{}]]({}/tree/{})**\n"
 
 # upload download
 udl_1: "`Balas ke file/media yang ingin anda download...`"
@@ -193,4 +193,4 @@ wrd_3: "**Kata** - `{}`\n\n**Antonim** - \n"
 # assisant
 ast_1: "pilih api key yang ingin anda setel."
 ast_2: "**remove.bg API**\nmasukkan api key anda dari remove.bg.\n\nGunakan /cancel untuk membatalkan."
-ast_3: "kon'nichiwa, {} silahkan telusuri opsi berikut:"
+ast_3: "kon'nichiwa {} silahkan telusuri pengaturan berikut ini:"
