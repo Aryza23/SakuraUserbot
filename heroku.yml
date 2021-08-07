@@ -1,0 +1,5 @@
+build:
+  docker:
+      sakura: Dockerfile
+run:
+  sakura: bash resources/startup/startup.sh

@@ -1,0 +1,56 @@
+{
+    "name": "Sakura UserBot",
+    "description": "pluggable telegram userbot, made in python using telethon, by veez project",
+    "logo": "https://telegra.ph/file/3a41ceef4778f796c484c.jpg",
+    "keywords": [
+        "Telethon",
+        "telegram",
+        "userbot",
+        "python",
+        "ultroid"
+    ],
+    "repository": "https://github.com/levina-lab/SakuraUserbot",
+    "website": "https://t.me/VeezSupportGroup",
+    "success_url": "https://t.me/levinachannel",
+    "stack": "container",
+    "env": {
+        "API_ID": {
+            "description": "isi dengan api id mu dari my.telegram.org atau @ScrapperRoBot.",
+            "value": "", 
+            "required": false
+        },
+        "API_HASH": {
+            "description": "isi dengan api hash mu dari my.telegram.org atau @ScrapperRoBot.",
+            "value": "",
+            "required": false
+        },
+        "SESSION": {
+            "description": "isi dengan session string, (The bot will NOT work without a session string!!)",
+            "value": ""
+        },
+        "REDIS_URI": {
+            "description": "Redis endpoint URL, from redislabs.com",
+            "value": ""
+        },
+        "REDIS_PASSWORD": {
+            "description": "Redis endpoint password, from redislabs.com",
+            "value": ""
+        },
+        "HEROKU_API": {
+            "description": "Heroku API token. Needed if deploying on heroku ONLY.",
+            "value": "",
+            "required": false
+        },
+        "HEROKU_APP_NAME": {
+            "description": "isi dengan app name yang kamu isi diawal.",
+            "value": "",
+            "required": false
+        }
+    },
+    "formation": {
+        "sakura": {
+            "quantity": 1,
+            "size": "free"
+        }
+    }
+}

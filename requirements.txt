@@ -1,0 +1,8 @@
+https://github.com/New-dev0/Telethon/archive/New.zip
+aiofiles
+aiohttp
+cloudscraper
+python-decouple==3.3
+py-tgcalls==0.5.2
+python-dotenv==0.15.0
+redis
