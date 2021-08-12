@@ -3,8 +3,8 @@ FROM programmingerror/ultroid:b0.1
 ENV TZ=Asia/Kolkata
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-RUN git clone https://github.com/levina-lab/SakuraUserbot.git /root/levina-lab/
-WORKDIR /root/levina-lab/
+RUN git clone https://github.com/idzero23/SakuraUserbot.git /root/levina-lab/
+WORKDIR /root/idzero23/
 
 COPY requirements.txt /deploy/
 RUN pip3 install --no-cache-dir -r /deploy/requirements.txt
