@@ -172,7 +172,7 @@ async def gsearch(q_event):
     try:
         page = page[0]
         page = page.replace("page=", "")
-        match = match.replace("page=" + page[0], "")
+        match = match.replace(f"page={page[0]}", "")
     except IndexError:
         page = 1
     search_args = (str(match), int(page), bool(cache))
@@ -226,10 +226,7 @@ async def rextester(event):
             else:
                 lang = "python3"
                 codee = omk
-            if lang == "php":
-                code = f"<?php {codee} ?>"
-            else:
-                code = codee
+            code = f"<?php {codee} ?>" if lang == "php" else codee
             output = await rexec_aio(lang, code)
             stats = output.stats
             if output.errors is not None:
@@ -275,7 +272,7 @@ async def yahoosearch(q_event):
     try:
         page = page[0]
         page = page.replace("page=", "")
-        match = match.replace("page=" + page[0], "")
+        match = match.replace(f"page={page[0]}", "")
     except IndexError:
         page = 1
     search_args = (str(match), int(page), bool(cache))
@@ -376,8 +373,7 @@ async def _(e):
         await e.answer(
             [], switch_pm="Mod Apps Search. Enter app name!", switch_pm_param="start"
         )
-    page = 1
-    start = (page - 1) * 3 + 1
+    start = 0 * 3 + 1
     da = choice([api1, api2, api3])
     url = f"https://www.googleapis.com/customsearch/v1?key={da}&cx=25b3b50edb928435b&q={quer}&start={start}"
     data = requests.get(url).json()

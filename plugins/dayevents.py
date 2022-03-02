@@ -30,14 +30,14 @@ async def diela(e):
     if match:
         date = match.split("/")[0]
         month = match.split("/")[1]
-        li += "/days/2021/" + month + "/" + date
+        li += f"/days/2021/{month}/{date}"
         te = f"♻️ **Events for {match}/2021**\n\n"
     else:
-        da = dr.today().strftime("%F").split("-")
-        li += "/days/2021/" + da[1] + "/" + da[2]
+        da = dr.now().strftime("%F").split("-")
+        li += f"/days/2021/{da[1]}/{da[2]}"
     ct = r.get(li).content
     bt = bs(ct, "html.parser", from_encoding="utf-8")
     ml = bt.find_all("a", "js-link-target", href=re.compile("daysoftheyear.com/days"))
     for eve in ml[:5]:
-        te += "• " + f'[{eve.text}]({eve["href"]})\n'
+        te += f'• [{eve.text}]({eve["href"]})\n'
     await m.edit(te, link_preview=False)

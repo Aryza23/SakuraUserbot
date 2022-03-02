@@ -47,15 +47,14 @@ async def setwel(event):
             dl = await bot.download_media(r.media)
             variable = uf(dl)
             os.remove(dl)
-            m = "https://telegra.ph" + variable[0]
+            m = f"https://telegra.ph{variable[0]}"
         elif wut == "video":
             if r.media.document.size > 8 * 1000 * 1000:
                 return await eod(x, "`Unsupported Media`")
-            else:
-                dl = await bot.download_media(r.media)
-                variable = uf(dl)
-                os.remove(dl)
-                m = "https://telegra.ph" + variable[0]
+            dl = await bot.download_media(r.media)
+            variable = uf(dl)
+            os.remove(dl)
+            m = f"https://telegra.ph{variable[0]}"
         elif wut == "web":
             m = None
         else:
@@ -103,15 +102,14 @@ async def setgb(event):
             dl = await bot.download_media(r.media)
             variable = uf(dl)
             os.remove(dl)
-            m = "https://telegra.ph" + variable[0]
+            m = f"https://telegra.ph{variable[0]}"
         elif wut == "video":
             if r.media.document.size > 8 * 1000 * 1000:
                 return await eod(x, "`Unsupported Media`")
-            else:
-                dl = await bot.download_media(r.media)
-                variable = uf(dl)
-                os.remove(dl)
-                m = "https://telegra.ph" + variable[0]
+            dl = await bot.download_media(r.media)
+            variable = uf(dl)
+            os.remove(dl)
+            m = f"https://telegra.ph{variable[0]}"
         elif wut == "web":
             m = None
         else:
@@ -150,25 +148,16 @@ async def listgd(event):
 @ultroid_bot.on(events.ChatAction())
 async def _(event):
     if event.user_left or event.user_kicked:
-        wel = get_goodbye(event.chat_id)
-        if wel:
+        if wel := get_goodbye(event.chat_id):
             user = await event.get_user()
             chat = await event.get_chat()
-            title = chat.title if chat.title else "this chat"
+            title = chat.title or "this chat"
             pp = await event.client.get_participants(chat)
             count = len(pp)
             mention = f"[{get_display_name(user)}](tg://user?id={user.id})"
             name = user.first_name
-            last = user.last_name
-            if last:
-                fullname = f"{name} {last}"
-            else:
-                fullname = name
-            uu = user.username
-            if uu:
-                username = f"@{uu}"
-            else:
-                username = mention
+            fullname = f"{name} {last}" if (last := user.last_name) else name
+            username = f"@{uu}" if (uu := user.username) else mention
             msgg = wel["goodbye"]
             med = wel["media"]
             userid = user.id
@@ -188,25 +177,16 @@ async def _(event):
             else:
                 await event.reply(file=med)
     elif event.user_joined or event.user_added:
-        wel = get_welcome(event.chat_id)
-        if wel:
+        if wel := get_welcome(event.chat_id):
             user = await event.get_user()
             chat = await event.get_chat()
-            title = chat.title if chat.title else "this chat"
+            title = chat.title or "this chat"
             pp = await event.client.get_participants(chat)
             count = len(pp)
             mention = f"[{get_display_name(user)}](tg://user?id={user.id})"
             name = user.first_name
-            last = user.last_name
-            if last:
-                fullname = f"{name} {last}"
-            else:
-                fullname = name
-            uu = user.username
-            if uu:
-                username = f"@{uu}"
-            else:
-                username = mention
+            fullname = f"{name} {last}" if (last := user.last_name) else name
+            username = f"@{uu}" if (uu := user.username) else mention
             msgg = wel["welcome"]
             med = wel["media"]
             userid = user.id

@@ -13,9 +13,7 @@ def str_to_list(text):  # Returns List
 
 
 def list_to_str(list):  # Returns String
-    str = ""
-    for x in list:
-        str += f"{x} "
+    str = "".join(f"{x} " for x in list)
     return str.strip()
 
 
@@ -29,10 +27,7 @@ def get_muted():  # Returns List
 
 def is_muted(id):  # Take int or str with numbers only , Returns Boolean
     pmperm = get_muted()
-    if str(id) in pmperm:
-        return True
-    else:
-        return False
+    return str(id) in pmperm
 
 
 def mute(id):  # Take int or str with numbers only , Returns Boolean

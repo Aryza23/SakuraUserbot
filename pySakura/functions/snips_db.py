@@ -9,15 +9,9 @@ from .. import udB
 
 
 def ls(list):
-    z = 0
-    xx = ""
-    for x in list:
-        z += 1
-        if z == len(list):
-            xx += x
-        else:
-            xx += f"{x}|||"
-    return xx
+    return "".join(
+        x if z == len(list) else f"{x}|||" for z, x in enumerate(list, start=1)
+    )
 
 
 def get_reply(word):
@@ -59,21 +53,17 @@ def add_snip(word, msg, media):
     try:
         rr = str({"msg": msg, "media": media})
         the_thing = f"{word}$|{rr}"
-        rt = udB.get("SNIP")
-        if not rt:
-            udB.set("SNIP", the_thing)
-        else:
+        if rt := udB.get("SNIP"):
             xx = rt.split("|||")
             for y in xx:
                 yy = y.split("$|")
                 if str(yy[0]) == str(word):
                     xx.remove(y)
-                    if the_thing not in xx:
-                        xx.append(the_thing)
-                else:
-                    if the_thing not in xx:
-                        xx.append(the_thing)
+                if the_thing not in xx:
+                    xx.append(the_thing)
             udB.set("SNIP", ls(xx))
+        else:
+            udB.set("SNIP", the_thing)
         return True
     except Exception as e:
         print(e)

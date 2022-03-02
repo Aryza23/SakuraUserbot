@@ -32,13 +32,10 @@ def inline_owner():
     def decorator(function):
         @functools.wraps(function)
         async def wrapper(event):
-            if str(event.sender_id) in owner_and_sudos():
-                try:
+            try:
+                if str(event.sender_id) in owner_and_sudos():
                     await function(event)
-                except BaseException:
-                    pass
-            else:
-                try:
+                else:
                     builder = event.builder
                     sur = builder.article(
                         title="SAKURA USERBOT",
@@ -63,8 +60,8 @@ def inline_owner():
                         switch_pm=f"🤖: assistant of {OWNER_NAME}",
                         switch_pm_param="start",
                     )
-                except BaseException:
-                    pass
+            except BaseException:
+                pass
 
         return wrapper
 
@@ -73,7 +70,7 @@ def inline_owner():
 
 def asst_cmd(dec):
     def ult(func):
-        pattern = "^/" + dec  # todo - handlers for assistant?
+        pattern = f"^/{dec}"
         asst.add_event_handler(func, NewMessage(incoming=True, pattern=pattern))
 
     return ult

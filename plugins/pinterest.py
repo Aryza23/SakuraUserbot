@@ -30,7 +30,7 @@ def gib_link(link):
     if link.startswith("https"):
         return _base + link.replace(":", colon).replace("/", slash)
     else:
-        return _base + f"https{colon}{slash}{slash}pin.it{slash}{link}"
+        return f"{_base}https{colon}{slash}{slash}pin.it{slash}{link}"
 
 
 @ultroid_cmd(

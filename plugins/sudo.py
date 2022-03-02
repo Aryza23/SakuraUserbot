@@ -51,16 +51,16 @@ async def _(ult):
         if id == ultroid_bot.me.id:
             mmm += "kamu tidak dapat menambahkan dirimu sendiri sebagai anggota sudo..."
         elif is_sudo(id):
-            if name != "":
-                mmm += f"[{name}](tg://user?id={id}) `sudah menjadi anggota sudo...`"
-            else:
+            if not name:
                 mmm += f"`{id} sudah menjadi anggota sudo...`"
+            else:
+                mmm += f"[{name}](tg://user?id={id}) `sudah menjadi anggota sudo...`"
         elif add_sudo(id):
             udB.set("SUDO", "True")
-            if name != "":
-                mmm += f"**menambahkan [{name}](tg://user?id={id}) sebagai anggota sudo**"
-            else:
+            if not name:
                 mmm += f"**menambahkan **`{id}`** sebagai anggota sudo**"
+            else:
+                mmm += f"**menambahkan [{name}](tg://user?id={id}) sebagai anggota sudo**"
         else:
             mmm += "`SEEMS LIKE THIS FUNCTION CHOOSE TO BREAK ITSELF`"
     else:
@@ -99,15 +99,15 @@ async def _(ult):
         except BaseException:
             name = ""
         if not is_sudo(id):
-            if name != "":
-                mmm += f"[{name}](tg://user?id={id}) `bukan anggota sudo...`"
-            else:
+            if not name:
                 mmm += f"`{id} bukan anggota sudo...`"
-        elif del_sudo(id):
-            if name != "":
-                mmm += f"**menghapus [{name}](tg://user?id={id}) dari anggota sudo.(s)**"
             else:
+                mmm += f"[{name}](tg://user?id={id}) `bukan anggota sudo...`"
+        elif del_sudo(id):
+            if not name:
                 mmm += f"**menghapus **`{id}`** dari anggota sudo.(s)**"
+            else:
+                mmm += f"**menghapus [{name}](tg://user?id={id}) dari anggota sudo.(s)**"
         else:
             mmm += "`SEEMS LIKE THIS FUNCTION CHOOSE TO BREAK ITSELF`"
     else:
@@ -134,7 +134,7 @@ async def _(ult):
             msg += f"• [{name}](tg://user?id={i}) ( `{i}` )\n"
         else:
             msg += f"• `{i}` ➠ invalid user\n"
-    m = udB.get("SUDO") if udB.get("SUDO") else "False"
+    m = udB.get("SUDO") or "False"
     if m == "False":
         m = "[False](https://telegra.ph/Ultroid-04-06)"
     return await ok.edit(

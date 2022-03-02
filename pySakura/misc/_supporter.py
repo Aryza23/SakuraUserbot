@@ -25,7 +25,7 @@ borg = ultroid_bot
 friday = ultroid_bot
 jarvis = ultroid_bot
 
-hndlr = "\\" + HNDLR
+hndlr = f"\\{HNDLR}"
 
 
 def admin_cmd(pattern=None, command=None, **args):

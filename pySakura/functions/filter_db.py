@@ -9,15 +9,9 @@ from .. import udB
 
 
 def ls(list):
-    z = 0
-    xx = ""
-    for x in list:
-        z += 1
-        if z == len(list):
-            xx += x
-        else:
-            xx += f"{x}|||"
-    return xx
+    return "".join(
+        x if z == len(list) else f"{x}|||" for z, x in enumerate(list, start=1)
+    )
 
 
 def get_reply(chat, word):
@@ -92,17 +86,10 @@ def add_filter(chat, word, msg, media):
             xx = rt.split("|||")
             for y in xx:
                 yy = y.split("$|")
-                if str(yy[0]) == str(chat):
-                    if str(yy[1]) == str(word):
-                        xx.remove(y)
-                        if the_thing not in xx:
-                            xx.append(the_thing)
-                    else:
-                        if the_thing not in xx:
-                            xx.append(the_thing)
-                else:
-                    if the_thing not in xx:
-                        xx.append(the_thing)
+                if str(yy[0]) == str(chat) and str(yy[1]) == str(word):
+                    xx.remove(y)
+                if the_thing not in xx:
+                    xx.append(the_thing)
             udB.set("FILTERS", ls(xx))
         return True
     except Exception as e:

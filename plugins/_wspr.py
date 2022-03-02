@@ -78,7 +78,6 @@ async def _(e):
             logi = await ultroid_bot(gu(id=query))
             name = logi.user.first_name
             ids = logi.user.id
-            username = logi.user.username
             mention = f"[{name}](tg://user?id={ids})"
             x = logi.user.status
             bio = logi.about
@@ -96,7 +95,7 @@ async def _(e):
                 status = "tidak diketahui"
             text = f"**nama:**    `{name}`\n"
             text += f"**id:**    `{ids}`\n"
-            if username:
+            if username := logi.user.username:
                 text += f"**username:**    `{username}`\n"
                 url = f"https://t.me/{username}"
             else:
@@ -143,8 +142,9 @@ async def _(e):
         except ValueError:
             sur = e.builder.article(
                 title="ketikkan pesan mu",
-                text=f"anda tidak mengetik pesan apapun.",
+                text="anda tidak mengetik pesan apapun.",
             )
+
     await e.answer([sur])
 
 

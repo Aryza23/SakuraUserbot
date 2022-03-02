@@ -28,17 +28,13 @@ from . import owner_and_sudos, should_allow_sudo, sudoers, ultroid_bot
 from ._assistant import admin_check
 from ._wrappers import eod
 
-hndlr = "\\" + HNDLR
+hndlr = f"\\{HNDLR}"
 
 black_list_chats = eval(udB.get("BLACKLIST_CHATS"))
 
 
 def compile_pattern(data, hndlr):
-    if data.startswith(r"\#"):
-        pattern = re.compile(data)
-    else:
-        pattern = re.compile(hndlr + data)
-    return pattern
+    return re.compile(data) if data.startswith(r"\#") else re.compile(hndlr + data)
 
 
 # decorator
@@ -106,29 +102,31 @@ def ultroid_cmd(allow_sudo=should_allow_sudo(), **args):
                 if ult.fwd_from:
                     return
                 chat = ult.chat
-                if mode == "official":
-                    if not ult.out:
-                        if not allow_sudo or (str(ult.sender_id) not in sudoers()):
-                            return
-
-                    if hasattr(chat, "title"):
-                        if (
-                            "#noub" in chat.title.lower()
-                            and not (chat.admin_rights or chat.creator)
-                            and not (str(ult.sender_id) in DEVLIST)
-                        ):
-                            return
-                    if admins_only:
-                        if ult.is_private:
-                            return await eod(ult, "`gunakan ini di group/channel.`")
-                        if not (chat.admin_rights or chat.creator):
-                            return await eod(ult, "`saya bukan admin.`")
-                elif mode == "dualmode":
+                if mode == "dualmode":
                     if str(ult.sender_id) not in owner_and_sudos():
                         return
                 elif mode == "manager":
-                    if not (ult.out or await admin_check(ult)):
+                    if not ult.out and not await admin_check(ult):
                         return
+                elif mode == "official":
+                    if not ult.out and (
+                        not allow_sudo or (str(ult.sender_id) not in sudoers())
+                    ):
+                        return
+
+                    if (
+                        hasattr(chat, "title")
+                        and "#noub" in chat.title.lower()
+                        and not chat.admin_rights
+                        and not chat.creator
+                        and str(ult.sender_id) not in DEVLIST
+                    ):
+                        return
+                    if admins_only:
+                        if ult.is_private:
+                            return await eod(ult, "`gunakan ini di group/channel.`")
+                        if not chat.admin_rights and not chat.creator:
+                            return await eod(ult, "`saya bukan admin.`")
                 if groups_only and ult.is_private:
                     return await eod(ult, "`gunakan ini di group/channel.`")
                 try:
@@ -158,7 +156,7 @@ def ultroid_cmd(allow_sudo=should_allow_sudo(), **args):
                     date = strftime("%Y-%m-%d %H:%M:%S", gmtime())
                     naam = get_display_name(chat)
                     ftext = "**Sakura Client Error:** `Laporkan ini ke` @VeezSupportGroup\n\n"
-                    ftext += "`PySakura Version: " + str(pyver)
+                    ftext += f"`PySakura Version: {str(pyver)}"
                     ftext += "\nSakura Version: " + str(ult_ver)
                     ftext += "\nTelethon Version: " + str(telever) + "\n\n"
                     ftext += "-----START SAKURA CRASH LOG-----"
@@ -178,7 +176,7 @@ def ultroid_cmd(allow_sudo=should_allow_sudo(), **args):
                     stdout, stderr = await bash('git log --pretty=format:"%an: %s" -5')
                     result = str(stdout.strip()) + str(stderr.strip())
 
-                    ftext += result + "`"
+                    ftext += f'{result}`'
 
                     if len(ftext) > 4096:
                         with open("logs.txt", "w") as log:

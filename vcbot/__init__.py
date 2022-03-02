@@ -39,8 +39,7 @@ vcusername = tele_asst.me.username
 def VC_AUTHS():
     _vc_sudos = udB.get("VC_SUDOS").split() if udB.get("VC_SUDOS") else ""
     A_AUTH = [udB["OWNER_ID"], *sudoers(), *_vc_sudos]
-    AUTH = [int(x) for x in A_AUTH]
-    return AUTH
+    return [int(x) for x in A_AUTH]
 
 
 def reply_markup(chat_id: int):
@@ -132,7 +131,7 @@ async def download(event, query, chat, ts):
     }
     ytdl_data = await dler(event, link)
     YoutubeDL(opts).download([link])
-    dl = vid_id + ".mp3"
+    dl = f'{vid_id}.mp3'
     title = ytdl_data["title"]
     duration = ytdl_data["duration"]
     thumb = f"https://i.ytimg.com/vi/{vid_id}/hqdefault.jpg"

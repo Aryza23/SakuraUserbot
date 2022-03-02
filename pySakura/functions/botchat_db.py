@@ -23,7 +23,6 @@ def add_stuff(msg_id, user_id):
 def get_who(msg_id):
     ok = eval(udB.get("BOTCHAT"))
     try:
-        user = ok.get(msg_id)
-        return user
+        return ok.get(msg_id)
     except BaseException:
         return

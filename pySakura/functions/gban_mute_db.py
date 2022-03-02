@@ -13,9 +13,7 @@ def str_to_list(text):
 
 
 def list_to_str(list):
-    str = ""
-    for x in list:
-        str += f"{x} "
+    str = "".join(f"{x} " for x in list)
     return str.strip()
 
 
@@ -32,10 +30,7 @@ def is_gbanned(id):
     if not id.isdigit():
         return False
     gbun = gbanned_user()
-    if str(id) in gbun:
-        return True
-    else:
-        return False
+    return str(id) in gbun
 
 
 def gban(id):
@@ -89,10 +84,7 @@ def is_gmuted(id):
     if not id.isdigit():
         return False
     gmute = gmuted_user()
-    if str(id) in gmute:
-        return True
-    else:
-        return False
+    return str(id) in gmute
 
 
 def gmute(id):

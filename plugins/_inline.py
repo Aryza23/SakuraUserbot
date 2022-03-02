@@ -25,9 +25,7 @@ if add_ons == "True" or add_ons is None:
 else:
     zhelps = get_string("inline_3")
 
-C_PIC = udB.get("INLINE_PIC")
-
-if C_PIC:
+if C_PIC := udB.get("INLINE_PIC"):
     _file_to_replace = C_PIC
     TLINK = C_PIC
 else:
@@ -91,7 +89,7 @@ async def inline_alive(o):
                 content=InputWebDocument(TLINK, 0, "image/jpg", []),
             )
         ]
-        await o.answer(RES, switch_pm=f"🌸 SAKURA PORTAL", switch_pm_param="start")
+        await o.answer(RES, switch_pm="🌸 SAKURA PORTAL", switch_pm_param="start")
 
 
 @in_pattern("ultd")
@@ -99,8 +97,7 @@ async def inline_alive(o):
 async def inline_handler(event):
     z = []
     for x in LIST.values():
-        for y in x:
-            z.append(y)
+        z.extend(iter(x))
     result = event.builder.photo(
         file=_file_to_replace,
         link_preview=False,
@@ -156,8 +153,7 @@ async def _(event):
 async def setting(event):
     z = []
     for x in LIST.values():
-        for y in x:
-            z.append(y)
+        z.extend(iter(x))
     cmd = len(z)
     await event.edit(
         get_string("inline_4").format(
@@ -193,12 +189,14 @@ async def _(event):
     repo = Repo.init()
     ac_br = repo.active_branch
     changelog, tl_chnglog = await gen_chlog(repo, f"HEAD..upstream/{ac_br}")
-    changelog_str = changelog + f"\n\nklik tombol dibawah untuk memperbarui userbot anda!"
+    changelog_str = (
+        changelog + "\\n\\nklik tombol dibawah untuk memperbarui userbot anda!"
+    )
+
     if len(changelog_str) > 1024:
         await event.edit(get_string("upd_4"))
-        file = open(f"sakura_updates.txt", "w+")
-        file.write(tl_chnglog)
-        file.close()
+        with open("sakura_updates.txt", "w+") as file:
+            file.write(tl_chnglog)
         await event.edit(
             get_string("upd_5"),
             file="sakura_updates.txt",
@@ -207,7 +205,7 @@ async def _(event):
                 [Button.inline("« ʙᴀᴄᴋ", data="ownr")],
             ],
         )
-        remove(f"sakura_updates.txt")
+        remove("sakura_updates.txt")
         return
     else:
         await event.edit(
@@ -408,8 +406,7 @@ async def backr(event):
 async def opner(event):
     z = []
     for x in LIST.values():
-        for y in x:
-            z.append(y)
+        z.extend(iter(x))
     await event.edit(
         get_string("inline_4").format(
             OWNER_NAME,
@@ -537,18 +534,10 @@ async def on_plug_in_callback_query_handler(event):
 
 
 def page_num(page_number, loaded_plugins, prefix, type):
-    number_of_rows = 5
-    number_of_cols = 2
-    emoji = Redis("EMOJI_IN_HELP")
-    if emoji:
-        multi = emoji
-    else:
-        multi = "❀"
-    helpable_plugins = []
+    multi = emoji if (emoji := Redis("EMOJI_IN_HELP")) else "❀"
     global upage
     upage = page_number
-    for p in loaded_plugins:
-        helpable_plugins.append(p)
+    helpable_plugins = list(loaded_plugins)
     helpable_plugins = sorted(helpable_plugins)
     modules = [
         Button.inline(
@@ -561,9 +550,11 @@ def page_num(page_number, loaded_plugins, prefix, type):
         )
         for x in helpable_plugins
     ]
+    number_of_cols = 2
     pairs = list(zip(modules[::number_of_cols], modules[1::number_of_cols]))
     if len(modules) % number_of_cols == 1:
         pairs.append((modules[-1],))
+    number_of_rows = 5
     max_num_pages = ceil(len(pairs) / number_of_rows)
     modulo_page = page_number % max_num_pages
     if len(pairs) > number_of_rows:

@@ -59,7 +59,7 @@ async def _(e):
             return await eor(e, pop)
     variable = uf(dl)
     os.remove(dl)
-    nn = "https://telegra.ph" + variable[0]
+    nn = f"https://telegra.ph{variable[0]}"
     udB.set("CUSTOM_THUMBNAIL", str(nn))
     await bash(f"wget {nn} -O resources/extras/ultroid.jpg")
     await eor(e, f"Added [This]({nn}) As Your Custom Thumbnail", link_preview=False)
@@ -163,16 +163,14 @@ async def _(event):
         a = await event.get_reply_message()
         if not a.message:
             return await xx.edit("`Reply to a message`")
-        else:
-            b = open(input_str, "w")
+        with open(input_str, "w") as b:
             b.write(str(a.message))
-            b.close()
-            await xx.edit(f"**Packing into** `{input_str}`")
-            await event.client.send_file(
-                event.chat_id, input_str, thumb="resources/extras/ultroid.jpg"
-            )
-            await xx.delete()
-            os.remove(input_str)
+        await xx.edit(f"**Packing into** `{input_str}`")
+        await event.client.send_file(
+            event.chat_id, input_str, thumb="resources/extras/ultroid.jpg"
+        )
+        await xx.delete()
+        os.remove(input_str)
 
 
 @ultroid_cmd(
@@ -180,30 +178,27 @@ async def _(event):
 )
 async def _(event):
     xx = await eor(event, get_string("com_1"))
-    if event.reply_to_msg_id:
-        a = await event.get_reply_message()
-        if a.media:
-            b = await a.download_media()
-            try:
-                c = open(b)
-                d = c.read()
-                c.close()
-            except UnicodeDecodeError:
-                return await eod(xx, "`Not A Readable File.`")
-            try:
-                await xx.edit(f"```{d}```")
-            except BaseException:
-                what, key = get_paste(d)
-                if "neko" in what:
-                    await xx.edit(
-                        f"**MESSAGE EXCEEDS TELEGRAM LIMITS**\n\nSo Pasted It On [NEKOBIN](https://nekobin.com/{key})"
-                    )
-                elif "dog" in what:
-                    await xx.edit(
-                        f"**MESSAGE EXCEEDS TELEGRAM LIMITS**\n\nSo Pasted It On [DOGBIN](https://del.dog/{key})"
-                    )
-            os.remove(b)
-        else:
-            return await eod(xx, "`Reply to a readable file`", time=5)
-    else:
+    if not event.reply_to_msg_id:
         return await eod(xx, "`Reply to a readable file`", time=5)
+    a = await event.get_reply_message()
+    if not a.media:
+        return await eod(xx, "`Reply to a readable file`", time=5)
+    b = await a.download_media()
+    try:
+        with open(b) as c:
+            d = c.read()
+    except UnicodeDecodeError:
+        return await eod(xx, "`Not A Readable File.`")
+    try:
+        await xx.edit(f"```{d}```")
+    except BaseException:
+        what, key = get_paste(d)
+        if "neko" in what:
+            await xx.edit(
+                f"**MESSAGE EXCEEDS TELEGRAM LIMITS**\n\nSo Pasted It On [NEKOBIN](https://nekobin.com/{key})"
+            )
+        elif "dog" in what:
+            await xx.edit(
+                f"**MESSAGE EXCEEDS TELEGRAM LIMITS**\n\nSo Pasted It On [DOGBIN](https://del.dog/{key})"
+            )
+    os.remove(b)

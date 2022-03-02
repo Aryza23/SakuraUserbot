@@ -55,9 +55,8 @@ from . import humanbytes as hb
     pattern="tr",
 )
 async def _(event):
-    if len(event.text) > 3:
-        if not event.text[3] == " ":
-            return
+    if len(event.text) > 3 and event.text[3] != " ":
+        return
     input = event.text[4:6]
     txt = event.text[7:]
     xx = await eor(event, "`menerjemahkan...`")
@@ -158,7 +157,7 @@ async def _(ult):
                     x.id,
                 )
     except Exception as e:
-        mentions += " " + str(e) + "\n"
+        mentions += f" {str(e)}" + "\n"
     await eor(ult, mentions)
 
 
@@ -170,7 +169,7 @@ async def _(ult):
         input = ult.text.split(" ", maxsplit=1)[1]
     except IndexError:
         return await eod(ult, "`masukkan beberapa tautan..`", time=5)
-    await eor(ult, "[ㅤㅤㅤㅤㅤㅤㅤ](" + input + ")", link_preview=False)
+    await eor(ult, f"[ㅤㅤㅤㅤㅤㅤㅤ]({input})", link_preview=False)
 
 
 @ultroid_cmd(
@@ -199,12 +198,13 @@ async def _(e):
             cv2.imwrite("img.png", output)
             thumb = "img.png"
         c = await downloader(
-            "resources/downloads/" + a.file.name,
+            f"resources/downloads/{a.file.name}",
             a.media.document,
             z,
             toime,
             "ᴍᴇɴɢᴜɴᴅᴜʜ...",
         )
+
         await z.edit("**ᴅɪᴜɴᴅᴜʜ...\nsᴇᴋᴀʀᴀɴɢ ᴍᴇɴɢᴋᴏɴᴠᴇʀsɪ...**")
         await bash(
             f'ffmpeg -i "{c.name}" -preset ultrafast -acodec libmp3lame -ac 2 -ab 144 -ar 44100 comp.mp3'
@@ -271,31 +271,31 @@ async def _(e):
     book = []
     for file in sorted(files):
         if os.path.isdir(file):
-            folders.append("📂 " + str(file))
+            folders.append(f"📂 {str(file)}")
         elif str(file).endswith(".py"):
-            pyfiles.append("🐍 " + str(file))
+            pyfiles.append(f"🐍 {str(file)}")
         elif str(file).endswith(".json"):
-            jsons.append("🔮 " + str(file))
+            jsons.append(f"🔮 {str(file)}")
         elif str(file).endswith((".mkv", ".mp4", ".avi", ".gif")):
-            vdos.append("🎥 " + str(file))
+            vdos.append(f"🎥 {str(file)}")
         elif str(file).endswith((".mp3", ".ogg", ".m4a")):
-            audios.append("🔊 " + str(file))
+            audios.append(f"🔊 {str(file)}")
         elif str(file).endswith((".jpg", ".jpeg", ".png", ".webp")):
-            pics.append("🖼 " + str(file))
+            pics.append(f"🖼 {str(file)}")
         elif str(file).endswith((".txt", ".text", ".log")):
-            text.append("📄 " + str(file))
+            text.append(f"📄 {str(file)}")
         elif str(file).endswith((".apk", ".xapk")):
-            apk.append("📲 " + str(file))
+            apk.append(f"📲 {str(file)}")
         elif str(file).endswith(".exe"):
-            exe.append("⚙ " + str(file))
+            exe.append(f"⚙ {str(file)}")
         elif str(file).endswith((".zip", ".rar")):
-            zip_.append("🗜 " + str(file))
+            zip_.append(f"🗜 {str(file)}")
         elif str(file).endswith((".pdf", ".epub")):
-            book.append("📗 " + str(file))
+            book.append(f"📗 {str(file)}")
         elif "." in str(file)[1:]:
-            others.append("🏷 " + str(file))
+            others.append(f"🏷 {str(file)}")
         else:
-            otherfiles.append("📒 " + str(file))
+            otherfiles.append(f"📒 {str(file)}")
     omk = [
         *sorted(folders),
         *sorted(pyfiles),
@@ -325,19 +325,17 @@ async def _(e):
                     fp = os.path.join(path, f)
                     size += os.path.getsize(fp)
             if hb(size):
-                text += emoji + f" `{nam}`" + "  `" + hb(size) + "`\n"
+                text += f"{emoji} `{nam}`  `{hb(size)}" + "`\n"
                 fos += size
             else:
-                text += emoji + f" `{nam}`" + "\n"
+                text += f"{emoji} `{nam}`" + "\n"
             foc += 1
         else:
             if hb(int(os.path.getsize(name))):
-                text += (
-                    emoji + f" `{nam}`" + "  `" + hb(int(os.path.getsize(name))) + "`\n"
-                )
+                text += (f"{emoji} `{nam}`  `" + hb(int(os.path.getsize(name))) + "`\n")
                 fls += int(os.path.getsize(name))
             else:
-                text += emoji + f" `{nam}`" + "\n"
+                text += f"{emoji} `{nam}`" + "\n"
             flc += 1
     tfos, tfls, ttol = hb(fos), hb(fls), hb(fos + fls)
     if not hb(fos):

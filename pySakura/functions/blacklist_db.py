@@ -9,15 +9,9 @@ from .. import udB
 
 
 def lss(list):
-    z = 0
-    xx = ""
-    for x in list:
-        z += 1
-        if z == len(list):
-            xx += x
-        else:
-            xx += f"{x}$|"
-    return xx
+    return "".join(
+        x if z == len(list) else f"{x}$|" for z, x in enumerate(list, start=1)
+    )
 
 
 def get_blacklist(chat):
@@ -37,10 +31,7 @@ def list_blacklist(chat):
     y = eval(fl)
     if y.get(chat):
         allword = (y.get(chat)).split("$|")
-        g = ""
-        for z in allword:
-            g += f"👉`{z}`\n"
-        if g:
+        if g := "".join(f"👉`{z}`\n" for z in allword):
             return g
     return
 

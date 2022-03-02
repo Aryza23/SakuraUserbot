@@ -79,16 +79,6 @@ def connect_redis():
         LOGS.info("mendapatkan koneksi ke database redis")
         time.sleep(3.5)
         return connect_qovery_redis()
-        """
-        uri, passw = get_redis_vars()
-        redis_info = uri.split(":")
-        return redis.Redis(
-            host=redis_info[0],
-            port=redis_info[1],
-            password=passw,
-            decode_responses=True,
-        )
-        """
 
 
 def redis_connection():
@@ -151,8 +141,7 @@ def client_connection():
 
 
 def vc_connection(udB):
-    VC_SESSION = udB.get("VC_SESSION") or Var.VC_SESSION
-    if VC_SESSION:
+    if VC_SESSION := udB.get("VC_SESSION") or Var.VC_SESSION:
         try:
             vcasst = Client(
                 ":memory:",

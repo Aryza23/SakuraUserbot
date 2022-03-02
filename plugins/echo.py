@@ -78,13 +78,12 @@ async def okk(e):
 
 @ultroid_cmd(pattern="listecho$")
 async def lstecho(e):
-    k = list_echo(e.chat_id)
-    if k:
+    if k := list_echo(e.chat_id):
         user = "**Activated Echo For Users:**\n\n"
         for x in k:
             ok = await ultroid_bot.get_entity(int(x))
             kk = f"[{get_display_name(ok)}](tg://user?id={ok.id})"
-            user += "•" + kk + "\n"
+            user += f"•{kk}" + "\n"
         await eor(e, user)
     else:
         await eod(e, "`List is Empty, For echo`")

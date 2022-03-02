@@ -55,8 +55,7 @@ _start = [
 @callback("ownerinfo")
 async def own(event):
     await event.edit(
-        Owner_info_msg,
-        buttons=[Button.inline("🗑 CLOSE", data=f"closeit")],
+        Owner_info_msg, buttons=[Button.inline("🗑 CLOSE", data="closeit")]
     )
 
 
@@ -150,26 +149,25 @@ async def bdcast(event):
         themssg = response.message.message
         if themssg == "/cancel":
             return await conv.send_message("dibatalkan !!")
-        else:
-            success = 0
-            fail = 0
-            await conv.send_message(f"memulai broadcast ke {len(ok)} pengguna...")
-            start = datetime.now()
-            for i in ok:
-                try:
-                    await asst.send_message(int(i), f"{themssg}")
-                    success += 1
-                except BaseException:
-                    fail += 1
-            end = datetime.now()
-            time_taken = (end - start).seconds
-            await conv.send_message(
-                f"""
+        success = 0
+        fail = 0
+        await conv.send_message(f"memulai broadcast ke {len(ok)} pengguna...")
+        start = datetime.now()
+        for i in ok:
+            try:
+                await asst.send_message(int(i), f"{themssg}")
+                success += 1
+            except BaseException:
+                fail += 1
+        end = datetime.now()
+        time_taken = (end - start).seconds
+        await conv.send_message(
+            f"""
 broadcast selesai dalam {time_taken} detik.
 total pengguna di bot » {len(ok)}
 terkirim ke {success} pengguna.
 gagal ke {fail} pengguna.""",
-            )
+        )
 
 
 @callback("setter")
@@ -200,16 +198,15 @@ async def timezone_(event):
                 "dibatalkan !!",
                 buttons=get_back_button("mainmenu"),
             )
-        else:
-            try:
-                tz(themssg)
-                await setit(event, var, themssg)
-                await conv.send_message(
-                    f"{name} diatur ke {themssg}\n",
-                    buttons=get_back_button("mainmenu"),
-                )
-            except BaseException:
-                await conv.send_message(
-                    "time zone salah, coba lagi.",
-                    buttons=get_back_button("mainmenu"),
-                )
+        try:
+            tz(themssg)
+            await setit(event, var, themssg)
+            await conv.send_message(
+                f"{name} diatur ke {themssg}\n",
+                buttons=get_back_button("mainmenu"),
+            )
+        except BaseException:
+            await conv.send_message(
+                "time zone salah, coba lagi.",
+                buttons=get_back_button("mainmenu"),
+            )

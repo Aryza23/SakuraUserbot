@@ -48,15 +48,16 @@ async def siesace(e):
         singers = k["primary_artists"]
     except Exception as ex:
         return await eod(lol, f"`{str(ex)}`")
-    urlretrieve(urrl, title + ".mp3")
-    urlretrieve(img, title + ".jpg")
+    urlretrieve(urrl, f'{title}.mp3')
+    urlretrieve(img, f'{title}.jpg')
     okk = await uploader(
-        title + ".mp3", title + ".mp3", hmm, lol, "Uploading " + title + "..."
+        f'{title}.mp3', f'{title}.mp3', hmm, lol, f"Uploading {title}..."
     )
+
     await ultroid_bot.send_file(
         e.chat_id,
         okk,
-        caption="`" + title + "`" + "\n`From Saavn`",
+        caption=f"`{title}`" + "\n`From Saavn`",
         attributes=[
             DocumentAttributeAudio(
                 duration=int(duration),
@@ -65,8 +66,9 @@ async def siesace(e):
             )
         ],
         supports_streaming=True,
-        thumb=title + ".jpg",
+        thumb=f'{title}.jpg',
     )
+
     await lol.delete()
-    os.remove(title + ".mp3")
-    os.remove(title + ".jpg")
+    os.remove(f'{title}.mp3')
+    os.remove(f'{title}.jpg')

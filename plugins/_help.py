@@ -45,8 +45,7 @@ async def ult(ult):
         except BotMethodInvalidError:
             z = []
             for x in LIST.values():
-                for y in x:
-                    z.append(y)
+                z.extend(iter(x))
             cmd = len(z) + 10
             bnn = asst.me.username
             return await ultroid_bot.send_message(

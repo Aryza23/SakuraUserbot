@@ -33,4 +33,4 @@ if not udB.get("DUAL_HNDLR"):
 HNDLR = udB.get("HNDLR")
 
 Evar = udB.get("SUDO_HNDLR")
-SUDOHNDLR = Evar if Evar else HNDLR
+SUDOHNDLR = Evar or HNDLR

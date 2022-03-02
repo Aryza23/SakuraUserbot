@@ -46,8 +46,9 @@ async def siesace(e):
         return await eod(lol, "`Song Not Found.. `")
     except JSONDecodeError:
         return await eod(
-            lol, f"`Tell `[sɪᴘᴀᴋ](tg://user?id=1303895686)`to turn on API.`"
+            lol, "`Tell `[sɪᴘᴀᴋ](tg://user?id=1303895686)`to turn on API.`"
         )
+
     try:
         title = k["title"]
         urrl = k["raw_link"]
@@ -56,19 +57,20 @@ async def siesace(e):
         singers = k["artist"]["name"]
     except Exception as ex:
         return await eod(lol, f"`{str(ex)}`")
-    urlretrieve(urrl, title + "." + quality)
-    urlretrieve(img, title + ".jpg")
+    urlretrieve(urrl, f'{title}.{quality}')
+    urlretrieve(img, f'{title}.jpg')
     okk = await uploader(
-        title + "." + quality,
-        title + "." + quality,
+        f'{title}.{quality}',
+        f'{title}.{quality}',
         hmm,
         lol,
-        "Uploading " + title + "...",
+        f"Uploading {title}...",
     )
+
     await ultroid_bot.send_file(
         e.chat_id,
         okk,
-        caption="`" + title + "`" + "\n`From Deezer`",
+        caption=f"`{title}`" + "\n`From Deezer`",
         attributes=[
             DocumentAttributeAudio(
                 duration=int(duration),
@@ -77,8 +79,9 @@ async def siesace(e):
             )
         ],
         supports_streaming=True,
-        thumb=title + ".jpg",
+        thumb=f'{title}.jpg',
     )
+
     await lol.delete()
-    os.remove(title + "." + quality)
-    os.remove(title + ".jpg")
+    os.remove(f'{title}.{quality}')
+    os.remove(f'{title}.jpg')

@@ -31,8 +31,7 @@ def add_welcome(chat, msg, media):
 
 def get_welcome(chat):
     ok = eval(udB.get("WELCOME"))
-    wl = ok.get(chat)
-    if wl:
+    if wl := ok.get(chat):
         return wl
     return
 
@@ -54,8 +53,7 @@ def add_goodbye(chat, msg, media):
 
 def get_goodbye(chat):
     ok = eval(udB.get("GOODBYE"))
-    wl = ok.get(chat)
-    if wl:
+    if wl := ok.get(chat):
         return wl
     return
 

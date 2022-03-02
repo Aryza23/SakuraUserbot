@@ -39,7 +39,7 @@ from . import *
 
 @ultroid_bot.on(events.NewMessage())
 async def _(e):
-    if not udB.get("AUTOPOST") == "True":
+    if udB.get("AUTOPOST") != "True":
         return
     x = get_source_channels()
     th = await e.get_chat()
@@ -123,17 +123,20 @@ async def dd(event):
         except Exception as es:
             print(es)
             return
-    if is_source_channel_added(y):
+    if (
+        is_source_channel_added(y)
+        or not is_source_channel_added(y)
+        and is_source_channel_added(y)
+    ):
         rem_source_channel(y)
         await x.edit("Source removed from database")
         await asyncio.sleep(3)
         await x.delete()
-    elif is_source_channel_added(y):
-        rem_source_channel(y)
-        await x.edit("Source removed from database")
-        await asyncio.sleep(3)
-        await x.delete()
-    elif not is_source_channel_added(y):
+    elif (
+        not is_source_channel_added(y)
+        and not is_source_channel_added(y)
+        and not is_source_channel_added(y)
+    ):
         await x.edit("Source channel is already removed from database. ")
         await asyncio.sleep(3)
         await x.delete()
@@ -207,17 +210,20 @@ async def dd(event):
         except Exception as es:
             print(es)
             return
-    if is_destination_added(y):
+    if (
+        is_destination_added(y)
+        or not is_destination_added(y)
+        and is_destination_added(y)
+    ):
         rem_destination(y)
         await x.edit("Destination removed from database")
         await asyncio.sleep(3)
         await x.delete()
-    elif is_destination_added(y):
-        rem_destination(y)
-        await x.edit("Destination removed from database")
-        await asyncio.sleep(3)
-        await x.delete()
-    elif not is_destination_added(y):
+    elif (
+        not is_destination_added(y)
+        and not is_destination_added(y)
+        and not is_destination_added(y)
+    ):
         await x.edit("Destination channel is already removed from database. ")
         await asyncio.sleep(3)
         await x.delete()

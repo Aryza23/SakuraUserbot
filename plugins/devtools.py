@@ -66,9 +66,7 @@ async def _(event):
         cmd = event.text.split(" ", maxsplit=1)[1]
     except IndexError:
         return await eod(xx, "`no cmd given`", time=10)
-    reply_to_id = event.message.id
-    if event.reply_to_msg_id:
-        reply_to_id = event.reply_to_msg_id
+    reply_to_id = event.reply_to_msg_id or event.message.id
     stdout, stderr = await bash(cmd)
     OUT = f"**☞ BASH\n\n• COMMAND:**\n`{cmd}` \n\n"
     if stderr:
@@ -78,7 +76,7 @@ async def _(event):
         o = "\n".join(_o)
         OUT += f"**• OUTPUT:**\n`{o}`"
     if not stderr and not stdout:
-        OUT += f"**• OUTPUT:**\n`Success`"
+        OUT += "**• OUTPUT:**\\n`Success`"
     if len(OUT) > 4096:
         ultd = OUT.replace("`", "").replace("*", "").replace("_", "")
         with io.BytesIO(str.encode(ultd)) as out_file:
@@ -104,9 +102,8 @@ p = print  # ignore: pylint
     pattern="eval",
 )
 async def _(event):
-    if len(event.text) > 5:
-        if not event.text[5] == " ":
-            return
+    if len(event.text) > 5 and event.text[5] != " ":
+        return
     if not event.out and not is_fullsudo(event.sender_id):
         return await eor(event, "`perintah ini dibatasi untuk anggota sudo.`")
     if Redis("I_DEV") != "True":
@@ -171,11 +168,15 @@ async def _(event):
 
 async def aexec(code, event):
     exec(
-        f"async def __aexec(e, client): "
-        + "\n message = event = e"
-        + "\n reply = await event.get_reply_message()"
-        + "\n chat = e.chat_id"
-        + "".join(f"\n {l}" for l in code.split("\n")),
+        (
+            (
+                ("async def __aexec(e, client): " + "\n message = event = e")
+                + "\n reply = await event.get_reply_message()"
+            )
+            + "\n chat = e.chat_id"
+        )
+        + "".join(f"\n {l}" for l in code.split("\n"))
     )
+
 
     return await locals()["__aexec"](event, event.client)

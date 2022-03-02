@@ -9,8 +9,7 @@ from .. import udB
 
 
 def is_clean_added(chat):
-    k = udB.get("CLEANCHAT")
-    if k:
+    if k := udB.get("CLEANCHAT"):
         if str(chat) in k:
             return True
         return
@@ -19,9 +18,8 @@ def is_clean_added(chat):
 
 def add_clean(chat):
     if not is_clean_added(chat):
-        k = udB.get("CLEANCHAT")
-        if k:
-            return udB.set("CLEANCHAT", k + " " + str(chat))
+        if k := udB.get("CLEANCHAT"):
+            return udB.set("CLEANCHAT", f'{k} {str(chat)}')
         return udB.set("CLEANCHAT", str(chat))
     return
 

@@ -329,7 +329,7 @@ async def fastpurger(purg):
         return await eod(purg, "`Reply to a message to purge from.`", time=10)
     async for msg in ultroid_bot.iter_messages(chat, min_id=purg.reply_to_msg_id):
         msgs.append(msg)
-        count = count + 1
+        count += 1
         msgs.append(purg.reply_to_msg_id)
         if len(msgs) == 100:
             await ultroid_bot.delete_messages(chat, msgs)
@@ -383,7 +383,7 @@ async def fastpurgerme(purg):
         min_id=purg.reply_to_msg_id,
     ):
         msgs.append(msg)
-        count = count + 1
+        count += 1
         msgs.append(purg.reply_to_msg_id)
         if len(msgs) == 100:
             await ultroid_bot.delete_messages(chat, msgs)
@@ -404,20 +404,19 @@ async def fastpurgerme(purg):
 )
 async def _(e):
     xx = await eor(e, get_string("com_1"))
-    if e.reply_to_msg_id:
-        input = (await e.get_reply_message()).sender_id
-        name = (await e.client.get_entity(input)).first_name
-        try:
-            await ultroid_bot(DeleteUserHistoryRequest(e.chat_id, input))
-            await eod(e, f"Successfully Purged All Messages from {name}")
-        except Exception as er:
-            return await eod(xx, str(er), time=5)
-    else:
+    if not e.reply_to_msg_id:
         return await eod(
             xx,
             "`Reply to someone's msg to delete.`",
             time=5,
         )
+    input = (await e.get_reply_message()).sender_id
+    name = (await e.client.get_entity(input)).first_name
+    try:
+        await ultroid_bot(DeleteUserHistoryRequest(e.chat_id, input))
+        await eod(e, f"Successfully Purged All Messages from {name}")
+    except Exception as er:
+        return await eod(xx, str(er), time=5)
 
 
 @ultroid_cmd(pattern="pinned")
@@ -438,7 +437,7 @@ async def get_pinned(event):
         if c == 1:
             return await x.edit(tem, parse_mode="html")
 
-    if tem == "":
+    if not tem:
         return await eod(x, "There is no pinned message in chat!", time=5)
 
 
@@ -460,7 +459,7 @@ async def get_all_pinned(event):
     else:
         m = f"<b>List of pinned message(s) in {chat_name}:</b>\n\n"
 
-    if a == "":
+    if not a:
         return await eod(x, "There is no message pinned in this group!", time=5)
 
     await x.edit(m + a, parse_mode="html")

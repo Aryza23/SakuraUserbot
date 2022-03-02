@@ -35,10 +35,10 @@ async def webss(event):
         return await eod(xx, "Invalid URL!", time=5)
     except requests.exceptions.MissingSchema:
         try:
-            r = requests.get("https://" + xurl)
+            r = requests.get(f"https://{xurl}")
         except requests.ConnectionError:
             try:
-                r2 = requests.get("http://" + xurl)
+                r2 = requests.get(f"http://{xurl}")
             except requests.ConnectionError:
                 return await eod(xx, "Invalid URL!", time=5)
     chrome_options = webdriver.ChromeOptions()

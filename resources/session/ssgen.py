@@ -10,12 +10,7 @@ import os
 from time import sleep
 
 # https://www.tutorialspoint.com/how-to-clear-screen-in-python#:~:text=In%20Python%20sometimes%20we%20have,screen%20by%20pressing%20Control%20%2B%20l%20.
-if os.name == "posix":
-    _ = os.system("clear")
-else:
-    # for windows platfrom
-    _ = os.system("cls")
-
+_ = os.system("clear") if os.name == "posix" else os.system("cls")
 a = r"""
   _    _ _ _             _     _
  | |  | | | |           (_)   | |
@@ -41,11 +36,7 @@ except BaseException:
     os.system("pip install telethon")
 
     x = "\bDone. Installed and imported Telethon."
-if os.name == "posix":
-    _ = os.system("clear")
-else:
-    # for windows platfrom
-    _ = os.system("cls")
+_ = os.system("clear") if os.name == "posix" else os.system("cls")
 print(a)
 print(x)
 

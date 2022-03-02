@@ -26,11 +26,9 @@ TOKEN_FILE = "resources/auths/auth_token.txt"
 )
 async def send(eve):
     name = (eve.data_match.group(1)).decode("UTF-8")
-    thumb = ""
-    for m in choices(sorted(glob("resources/extras/*.jpg"))):
-        thumb += m
+    thumb = "".join(choices(sorted(glob("resources/extras/*.jpg"))))
     if name.startswith("def"):
-        plug_name = name.replace(f"def_plugin_", "")
+        plug_name = name.replace("def_plugin_", "")
         plugin = f"plugins/{plug_name}.py"
         buttons = [
             [
@@ -45,7 +43,7 @@ async def send(eve):
             ],
         ]
     else:
-        plug_name = name.replace(f"add_plugin_", "")
+        plug_name = name.replace("add_plugin_", "")
         plugin = f"addons/{plug_name}.py"
         buttons = [
             [
@@ -90,8 +88,9 @@ async def update(eve):
         ups_rem.fetch(ac_br)
         repo.git.reset("--hard", "FETCH_HEAD")
         heroku_git_url = heroku_app.git_url.replace(
-            "https://", "https://api:" + Var.HEROKU_API + "@"
+            "https://", f"https://api:{Var.HEROKU_API}@"
         )
+
         if "heroku" in repo.remotes:
             remote = repo.remote("heroku")
             remote.set_url(heroku_git_url)
@@ -125,18 +124,17 @@ async def changes(okk):
     repo = Repo.init()
     ac_br = repo.active_branch
     changelog, tl_chnglog = await gen_chlog(repo, f"HEAD..upstream/{ac_br}")
-    changelog_str = changelog + f"\n\ntekan tombol dibawah untuk memperbarui!"
+    changelog_str = changelog + "\\n\\ntekan tombol dibawah untuk memperbarui!"
     if len(changelog_str) > 1024:
         await okk.edit(get_string("upd_4"))
-        file = open(f"sakura_updates.txt", "w+")
-        file.write(tl_chnglog)
-        file.close()
+        with open("sakura_updates.txt", "w+") as file:
+            file.write(tl_chnglog)
         await okk.edit(
             get_string("upd_5"),
             file="sakura_updates.txt",
             buttons=Button.inline("✨ UPDATE NOW ✨", data="updatenow"),
         )
-        remove(f"sakura_updates.txt")
+        remove("sakura_updates.txt")
         return
     else:
         await okk.edit(
@@ -154,9 +152,8 @@ async def changes(okk):
 @owner
 async def _(e):
     ok = (e.data_match.group(1)).decode("UTF-8")
-    hmm = open(ok)
-    hmmm = hmm.read()
-    hmm.close()
+    with open(ok) as hmm:
+        hmmm = hmm.read()
     key = (
         requests.post("https://nekobin.com/api/documents", json={"content": hmmm})
         .json()
@@ -450,12 +447,11 @@ async def taglogerr(event):
                 "dibatalkan !!",
                 buttons=get_back_button("taglog"),
             )
-        else:
-            await setit(event, var, themssg)
-            await conv.send_message(
-                f"{name} diatur ke {themssg}",
-                buttons=get_back_button("taglog"),
-            )
+        await setit(event, var, themssg)
+        await conv.send_message(
+            f"{name} diatur ke {themssg}",
+            buttons=get_back_button("taglog"),
+        )
 
 
 @callback("eaddon")
@@ -560,12 +556,11 @@ async def sfgrp(event):
                 "dibatalkan !!",
                 buttons=get_back_button("sfban"),
             )
-        else:
-            await setit(event, var, themssg)
-            await conv.send_message(
-                f"{name} diubah ke {themssg}",
-                buttons=get_back_button("sfban"),
-            )
+        await setit(event, var, themssg)
+        await conv.send_message(
+            f"{name} diubah ke {themssg}",
+            buttons=get_back_button("sfban"),
+        )
 
 
 @callback("sfexf")
@@ -577,8 +572,9 @@ async def sfexf(event):
     pru = event.sender_id
     async with asst.conversation(pru) as conv:
         await conv.send_message(
-            f"Send the Fed IDs you want to exclude in the ban. Split by a space.\neg`id1 id2 id3`\nSet is as `None` if you dont want any.\nUse /cancel to go back.",
+            "Send the Fed IDs you want to exclude in the ban. Split by a space.\\neg`id1 id2 id3`\\nSet is as `None` if you dont want any.\\nUse /cancel to go back."
         )
+
         response = conv.wait_event(events.NewMessage(chats=pru))
         response = await response
         themssg = response.message.message
@@ -587,12 +583,11 @@ async def sfexf(event):
                 "dibatalkan !!",
                 buttons=get_back_button("sfban"),
             )
-        else:
-            await setit(event, var, themssg)
-            await conv.send_message(
-                f"{name} diubah ke {themssg}",
-                buttons=get_back_button("sfban"),
-            )
+        await setit(event, var, themssg)
+        await conv.send_message(
+            f"{name} diubah ke {themssg}",
+            buttons=get_back_button("sfban"),
+        )
 
 
 @callback("alvcstm")
@@ -628,15 +623,14 @@ async def name(event):
                 "dibatalkan !!",
                 buttons=get_back_button("alvcstm"),
             )
-        else:
-            await setit(event, var, themssg)
-            await conv.send_message(
-                "{} diatur ke {}\n\nsekarang ketik restart agar perubahan tersimpan.".format(
-                    name,
-                    themssg,
-                ),
-                buttons=get_back_button("alvcstm"),
-            )
+        await setit(event, var, themssg)
+        await conv.send_message(
+            "{} diatur ke {}\n\nsekarang ketik restart agar perubahan tersimpan.".format(
+                name,
+                themssg,
+            ),
+            buttons=get_back_button("alvcstm"),
+        )
 
 
 @callback("alvmed")
@@ -663,7 +657,7 @@ async def media(event):
         media = await event.client.download_media(response, "alvpc")
         if (
             not (response.text).startswith("/")
-            and not response.text == ""
+            and response.text != ""
             and not response.media
         ):
             url = response.text
@@ -739,20 +733,19 @@ async def name(event):
                 "dibatalkan !!",
                 buttons=get_back_button("pmcstm"),
             )
-        else:
-            if len(themssg) > 4090:
-                return await conv.send_message(
-                    "pesan terlalu panjang!\nmohon berikan pesan yang sedikit pendek!",
-                    buttons=get_back_button("pmcstm"),
-                )
-            await setit(event, var, themssg)
-            await conv.send_message(
-                "{} diatur ke {}\n\nsekarang ketik restart agar perubahan tersimpan.".format(
-                    name,
-                    themssg,
-                ),
+        if len(themssg) > 4090:
+            return await conv.send_message(
+                "pesan terlalu panjang!\nmohon berikan pesan yang sedikit pendek!",
                 buttons=get_back_button("pmcstm"),
             )
+        await setit(event, var, themssg)
+        await conv.send_message(
+            "{} diatur ke {}\n\nsekarang ketik restart agar perubahan tersimpan.".format(
+                name,
+                themssg,
+            ),
+            buttons=get_back_button("pmcstm"),
+        )
 
 
 @callback("swarn")
@@ -809,7 +802,7 @@ async def media(event):
         media = await event.client.download_media(response, "pmpc")
         if (
             not (response.text).startswith("/")
-            and not response.text == ""
+            and response.text != ""
             and not response.media
         ):
             url = response.text
@@ -862,7 +855,7 @@ async def apon(event):
     var = "AUTOAPPROVE"
     await setit(event, var, "True")
     await event.edit(
-        f"DONE!, AUTOAPPROVE STARTED!",
+        "DONE!, AUTOAPPROVE STARTED!",
         buttons=[[Button.inline("« ʙᴀᴄᴋ", data="apauto")]],
     )
 
@@ -902,7 +895,7 @@ async def pmlog(event):
     var = "PMLOG"
     await setit(event, var, "True")
     await event.edit(
-        f"selesai!, pm logger diaktifkan!",
+        "selesai!, pm logger diaktifkan!",
         buttons=[[Button.inline("« ʙᴀᴄᴋ", data="pml")]],
     )
 
@@ -943,7 +936,7 @@ async def pmonn(event):
     var = "PMSETTING"
     await setit(event, var, "True")
     await event.edit(
-        f"selesai!, pm-permit telah diaktifkan!",
+        "selesai!, pm-permit telah diaktifkan!",
         buttons=[[Button.inline("« ʙᴀᴄᴋ", data="ppmset")]],
     )
 
@@ -954,7 +947,7 @@ async def pmofff(event):
     var = "PMSETTING"
     await setit(event, var, "False")
     await event.edit(
-        f"selesai!, pm-permit telah dimatikan!",
+        "selesai!, pm-permit telah dimatikan!",
         buttons=[[Button.inline("« ʙᴀᴄᴋ", data="ppmset")]],
     )
 
@@ -963,7 +956,7 @@ async def pmofff(event):
 @owner
 async def chbot(event):
     await event.edit(
-        f"dengan fitur ini anda dapat bertukar pesan dengan pengguna lain melalui bot ini.\n[info lengkap lihat disini](https://t.me/sakuraupdateschannel/3)",
+        "dengan fitur ini anda dapat bertukar pesan dengan pengguna lain melalui bot ini.\\n[info lengkap lihat disini](https://t.me/sakuraupdateschannel/3)",
         buttons=[
             [Button.inline("ᴄʜᴀᴛ ʙᴏᴛ ᴏɴ", data="onchbot")],
             [Button.inline("ᴄʜᴀᴛ ʙᴏᴛ ᴏғғ", data="ofchbot")],
@@ -993,15 +986,14 @@ async def name(event):
                 "dibatalkan !!",
                 buttons=get_back_button("chatbot"),
             )
-        else:
-            await setit(event, var, themssg)
-            await conv.send_message(
-                "{} diubah ke {}".format(
-                    name,
-                    themssg,
-                ),
-                buttons=get_back_button("chatbot"),
-            )
+        await setit(event, var, themssg)
+        await conv.send_message(
+            "{} diubah ke {}".format(
+                name,
+                themssg,
+            ),
+            buttons=get_back_button("chatbot"),
+        )
 
 
 @callback("onchbot")
@@ -1030,7 +1022,7 @@ async def chon(event):
 @owner
 async def vcb(event):
     await event.edit(
-        f"dengan fitur ini anda dapat memutar musik di vcg melalui bot ini\n\n[info selengkapya](https://t.me/sakuraupdateschannel/3)",
+        "dengan fitur ini anda dapat memutar musik di vcg melalui bot ini\\n\\n[info selengkapya](https://t.me/sakuraupdateschannel/3)",
         buttons=[
             [Button.inline("ᴠᴄ sᴇssɪᴏɴ", data="vcs")],
             [Button.inline("« ʙᴀᴄᴋ", data="setter")],
@@ -1058,15 +1050,14 @@ async def name(event):
                 "dibatalkan !!",
                 buttons=get_back_button("vcb"),
             )
-        else:
-            await setit(event, var, themssg)
-            await conv.send_message(
-                "{} diatur ke {}\n\nsekarang restart untuk menyimpan perubahan".format(
-                    name,
-                    themssg,
-                ),
-                buttons=get_back_button("vcb"),
-            )
+        await setit(event, var, themssg)
+        await conv.send_message(
+            "{} diatur ke {}\n\nsekarang restart untuk menyimpan perubahan".format(
+                name,
+                themssg,
+            ),
+            buttons=get_back_button("vcb"),
+        )
 
 
 @callback("inli_pic")
@@ -1093,7 +1084,7 @@ async def media(event):
         media = await event.client.download_media(response, "inlpic")
         if (
             not (response.text).startswith("/")
-            and not response.text == ""
+            and response.text != ""
             and not response.media
         ):
             url = response.text

@@ -39,12 +39,13 @@ async def mi(e):
             elif "video" in mime_type:
                 filename = "video_" + dt.now().isoformat("_", "seconds") + ".mp4"
         dl = await downloader(
-            "resources/downloads/" + filename,
+            f"resources/downloads/{filename}",
             file,
             ee,
             taime,
             f"`**[{xx}]({url})**\n\n`Loading More...",
         )
+
         naam = dl.name
     else:
         naam = await ultroid_bot.download_media(r.media)

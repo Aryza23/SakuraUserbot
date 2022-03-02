@@ -24,5 +24,4 @@ async def setit(event, name, value):
 
 
 def get_back_button(name):
-    button = [Button.inline("« ʙᴀᴄᴋ", data=f"{name}")]
-    return button
+    return [Button.inline("« ʙᴀᴄᴋ", data=f"{name}")]

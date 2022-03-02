@@ -80,7 +80,7 @@ async def waifu(animu):
             await xx.edit("`You haven't written any article, Waifu is going away.`")
             return
     waifus = [32, 33, 37, 40, 41, 42, 58, 20]
-    finalcall = "#" + (str(random.choice(waifus)))
+    finalcall = f"#{str(random.choice(waifus))}"
     try:
         sticcers = await animu.client.inline_query(
             "stickerizerbot",
@@ -89,9 +89,10 @@ async def waifu(animu):
         await sticcers[0].click(
             animu.chat_id,
             reply_to=animu.reply_to_msg_id,
-            silent=True if animu.is_reply else False,
+            silent=bool(animu.is_reply),
             hide_via=True,
         )
+
         await xx.delete()
     except ChatSendStickersForbiddenError:
         await xx.edit("maaf boss, saya tidak bisa mengirim sticker disini!")
@@ -478,9 +479,8 @@ async def ultdestroy(event):
     await event.client.download_media(ult, "ultroid.tgs")
     xx = await eor(event, "`memproses...`")
     os.system("lottie_convert.py ultroid.tgs json.json")
-    json = open("json.json")
-    jsn = json.read()
-    json.close()
+    with open("json.json") as json:
+        jsn = json.read()
     jsn = (
         jsn.replace("[100]", "[200]")
         .replace("[10]", "[40]")
@@ -522,9 +522,8 @@ async def ultiny(event):
     if ik.endswith(".tgs"):
         await event.client.download_media(reply, "ult.tgs")
         os.system("lottie_convert.py ult.tgs json.json")
-        json = open("json.json")
-        jsn = json.read()
-        json.close()
+        with open("json.json") as json:
+            jsn = json.read()
         jsn = jsn.replace("512", "2000")
         open("json.json", "w").write(jsn)
         os.system("lottie_convert.py json.json ult.tgs")

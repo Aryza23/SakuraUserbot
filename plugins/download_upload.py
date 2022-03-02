@@ -49,10 +49,7 @@ async def download(event):
         if hasattr(ok.media, "document"):
             file = ok.media.document
             mime_type = file.mime_type
-            if event.pattern_match.group(1):
-                filename = event.pattern_match.group(1)
-            else:
-                filename = ok.file.name
+            filename = event.pattern_match.group(1) or ok.file.name
             if not filename:
                 if "audio" in mime_type:
                     filename = "audio_" + dt.now().isoformat("_", "seconds") + ".ogg"
@@ -60,12 +57,13 @@ async def download(event):
                     filename = "video_" + dt.now().isoformat("_", "seconds") + ".mp4"
             try:
                 result = await downloader(
-                    "resources/downloads/" + filename,
+                    f"resources/downloads/{filename}",
                     file,
                     xx,
                     k,
-                    "Downloading " + filename + "...",
+                    f"Downloading {filename}...",
                 )
+
             except MessageNotModifiedError as err:
                 return await xx.edit(str(err))
             file_name = result.name
@@ -140,10 +138,7 @@ async def download(event):
                     if metadata.has("artist"):
                         artist = metadata.get("artist")
                     else:
-                        if udB.get("artist"):
-                            artist = udB.get("artist")
-                        else:
-                            artist = ultroid_bot.first_name
+                        artist = udB.get("artist") or ultroid_bot.first_name
                     if res.name.endswith(tuple([".mkv", ".mp4", ".avi"])):
                         attributes = [
                             DocumentAttributeVideo(
@@ -208,10 +203,7 @@ async def download(event):
                 if metadata.has("artist"):
                     artist = metadata.get("artist")
                 else:
-                    if udB.get("artist"):
-                        artist = udB.get("artist")
-                    else:
-                        artist = ultroid_bot.first_name
+                    artist = udB.get("artist") or ultroid_bot.first_name
                 if res.name.endswith(tuple([".mkv", ".mp4", ".avi"])):
                     attributes = [
                         DocumentAttributeVideo(
@@ -257,20 +249,20 @@ async def download(event):
             return await eor(xx, str(ve))
     e = dt.now()
     t = time_formatter(((e - s).seconds) * 1000)
-    if t != "":
-        if os.path.isdir(kk):
-            size = 0
-            for path, dirs, files in os.walk(kk):
-                for f in files:
-                    fp = os.path.join(path, f)
-                    size += os.path.getsize(fp)
-            c = len(os.listdir(kk))
-            await xx.delete()
-            await ultroid_bot.send_message(
-                event.chat_id,
-                f"Uploaded Total - `{c}` files of `{humanbytes(size)}` in `{t}`",
-            )
-        else:
-            await eor(xx, f"Uploaded `{kk}` in `{t}`")
-    else:
+    if t == "":
         await eor(xx, f"Uploaded `{kk}` in `0 second(s)`")
+
+    elif os.path.isdir(kk):
+        size = 0
+        for path, dirs, files in os.walk(kk):
+            for f in files:
+                fp = os.path.join(path, f)
+                size += os.path.getsize(fp)
+        c = len(os.listdir(kk))
+        await xx.delete()
+        await ultroid_bot.send_message(
+            event.chat_id,
+            f"Uploaded Total - `{c}` files of `{humanbytes(size)}` in `{t}`",
+        )
+    else:
+        await eor(xx, f"Uploaded `{kk}` in `{t}`")

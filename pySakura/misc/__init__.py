@@ -8,10 +8,7 @@ def sudoers():
 
 
 def should_allow_sudo():
-    if udB["SUDO"] == "True":
-        return True
-    else:
-        return False
+    return udB["SUDO"] == "True"
 
 
 def owner_and_sudos():

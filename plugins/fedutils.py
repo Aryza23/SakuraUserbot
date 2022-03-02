@@ -135,7 +135,7 @@ async def _(event):
                     ):
                         await msg.edit("Try again after 5 mins.")
                         return
-                if len(fedList) == 0:
+                if not fedList:
                     await msg.edit(
                         f"Unable to collect FedAdminList. Retrying ({a+1}/3)...",
                     )
@@ -155,12 +155,12 @@ async def _(event):
                     In = True
             elif In:
                 tempFedId += x
-        if len(fedList) == 0:
+        if not fedList:
             await msg.edit("Unable to collect FedAdminList.")
             return
     await msg.edit(f"FBaning in {len(fedList)} feds.")
     try:
-        await ultroid.send_message(chat, f"/start")
+        await ultroid.send_message(chat, "/start")
     except BaseException:
         await msg.edit("Specified FBan Group ID is incorrect.")
         return
@@ -207,12 +207,8 @@ async def _(event):
                 except BaseException:
                     pass
             arg = event.text.split(" ", maxsplit=2)
-            if len(arg) > 2:
-                FBAN = arg[1]
-                REASON = arg[2]  # rose unbans now can have reasons
-            else:
-                FBAN = arg[1]
-                REASON = ""
+            FBAN = arg[1]
+            REASON = arg[2] if len(arg) > 2 else ""
         else:
             FBAN = previous_message.sender_id
             try:
@@ -276,7 +272,7 @@ async def _(event):
                     ):
                         await msg.edit("Try again after 5 mins.")
                         return
-                if len(fedList) == 0:
+                if not fedList:
                     await msg.edit(
                         f"Unable to collect FedAdminList. Retrying ({a+1}/3)...",
                     )
@@ -296,12 +292,12 @@ async def _(event):
                     In = True
             elif In:
                 tempFedId += x
-        if len(fedList) == 0:
+        if not fedList:
             await msg.edit("Unable to collect FedAdminList.")
             return
     await msg.edit(f"UnFBaning in {len(fedList)} feds.")
     try:
-        await ultroid.send_message(chat, f"/start")
+        await ultroid.send_message(chat, "/start")
     except BaseException:
         await msg.edit("Specified FBan Group ID is incorrect.")
         return
@@ -351,7 +347,7 @@ async def _(event):
             try:
                 await conv.send_message("/start")
                 await conv.get_response()
-                await conv.send_message("/fedstat " + sysarg)
+                await conv.send_message(f"/fedstat {sysarg}")
                 audio = await conv.get_response()
                 if audio.message.startswith("This command can only be used once"):
                     return await ok.edit(
@@ -384,7 +380,7 @@ async def _(event):
         try:
             await conv.send_message("/start")
             await conv.get_response()
-            await conv.send_message("/fedinfo " + sysarg)
+            await conv.send_message(f"/fedinfo {sysarg}")
             audio = await conv.get_response()
             await ultroid.send_read_acknowledge(bot)
             await ok.edit(audio.text + "\n\nFedInfo Extracted by Ultroid")

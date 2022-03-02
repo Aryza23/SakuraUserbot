@@ -40,8 +40,7 @@ async def queuee(_, e):
         chat = (await Client.get_chat(mst[1])).id
     except BaseException:
         chat = e.chat.id
-    txt = list_queue(chat)
-    if txt:
+    if txt := list_queue(chat):
         return await eor(e, txt)
     await eor(e, "No Queue Found !")
 

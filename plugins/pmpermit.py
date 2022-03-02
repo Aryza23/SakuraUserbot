@@ -97,11 +97,10 @@ _not_approved = {}
 async def _(e):
     if not e.is_private:
         return await eod(e, "`gunakan saya di private chat.`", time=3)
-    if is_logger(str(e.chat_id)):
-        nolog_user(str(e.chat_id))
-        return await eod(e, "`mulai sekarang saya akan mencatat log pesan disini.`", time=3)
-    else:
+    if not is_logger(str(e.chat_id)):
         return await eod(e, "`mulai sekarang saya tidak akan mencatat log pesan disini.`", time=3)
+    nolog_user(str(e.chat_id))
+    return await eod(e, "`mulai sekarang saya akan mencatat log pesan disini.`", time=3)
 
 
 @ultroid_cmd(
@@ -110,11 +109,10 @@ async def _(e):
 async def _(e):
     if not e.is_private:
         return await eod(e, "`gunakan saya di private chat.`", time=3)
-    if not is_logger(str(e.chat_id)):
-        log_user(str(e.chat_id))
-        return await eod(e, "`sekarang saya tidak akan mencatat log pesan disini.`", time=3)
-    else:
+    if is_logger(str(e.chat_id)):
         return await eod(e, "`tidak akan lagi mencatat log pesan disini.`", time=3)
+    log_user(str(e.chat_id))
+    return await eod(e, "`sekarang saya tidak akan mencatat log pesan disini.`", time=3)
 
 
 @ultroid_bot.on(
@@ -195,10 +193,7 @@ if sett == "True":
             if event.media:
                 await event.delete()
             name = user.first_name
-            if user.last_name:
-                fullname = f"{name} {user.last_name}"
-            else:
-                fullname = name
+            fullname = f"{name} {user.last_name}" if user.last_name else name
             username = f"@{user.username}"
             mention = f"[{get_display_name(user)}](tg://user?id={user.id})"
             count = len(get_approved())
@@ -239,65 +234,32 @@ if sett == "True":
                         search=UNS,
                     ):
                         await message.delete()
-                    message_ = UNAPPROVED_MSG.format(
-                        ON=OWNER_NAME,
-                        warn=wrn,
-                        twarn=WARNS,
-                        UND=UND,
-                        name=name,
-                        fullname=fullname,
-                        username=username,
-                        count=count,
-                        mention=mention,
-                    )
-                    await ultroid.send_file(
-                        user.id,
-                        PMPIC,
-                        caption=message_,
-                    )
-                elif event.text == prevmsg:
+                else:
                     async for message in ultroid.iter_messages(
                         user.id,
                         search=UND,
                     ):
                         await message.delete()
-                    message_ = UNAPPROVED_MSG.format(
-                        ON=OWNER_NAME,
-                        warn=wrn,
-                        twarn=WARNS,
-                        UND=UND,
-                        name=name,
-                        fullname=fullname,
-                        username=username,
-                        count=count,
-                        mention=mention,
-                    )
-                    await ultroid.send_file(
-                        user.id,
-                        PMPIC,
-                        caption=message_,
-                    )
-                LASTMSG.update({user.id: event.text})
             else:
                 async for message in ultroid.iter_messages(user.id, search=UND):
                     await message.delete()
-                message_ = UNAPPROVED_MSG.format(
-                    ON=OWNER_NAME,
-                    warn=wrn,
-                    twarn=WARNS,
-                    UND=UND,
-                    name=name,
-                    fullname=fullname,
-                    username=username,
-                    count=count,
-                    mention=mention,
-                )
-                await ultroid.send_file(
-                    user.id,
-                    PMPIC,
-                    caption=message_,
-                )
-                LASTMSG.update({user.id: event.text})
+            message_ = UNAPPROVED_MSG.format(
+                ON=OWNER_NAME,
+                warn=wrn,
+                twarn=WARNS,
+                UND=UND,
+                name=name,
+                fullname=fullname,
+                username=username,
+                count=count,
+                mention=mention,
+            )
+            await ultroid.send_file(
+                user.id,
+                PMPIC,
+                caption=message_,
+            )
+            LASTMSG.update({user.id: event.text})
             if user.id not in COUNT_PM:
                 COUNT_PM.update({user.id: 1})
             else:
