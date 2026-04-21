@@ -4,5 +4,5 @@ aiohttp
 cloudscraper
 python-decouple==3.3
 py-tgcalls==0.5.2
-python-dotenv==0.15.0
+python-dotenv==1.2.2
 redis
